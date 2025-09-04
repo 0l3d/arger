@@ -27,6 +27,7 @@ If you're using macros, the usage is straightforward:
       .desc = "Select a count.",
       .long_n = 1,
       .short_n = 1,
+      .type = ARGER_INT,
       .f = hello_count,
   };
 
@@ -35,6 +36,8 @@ If you're using macros, the usage is straightforward:
       .desc = "Select a text.",
       .long_n = 1,
       .short_n = 1,
+      .type = ARGER_STRING,
+      .req = 1,
       .f = hello_world,
   };
 

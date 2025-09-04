@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {
       .desc = "Select a text.",
       .long_n = 1,
       .short_n = 1,
+      .type = ARGER_STRING,
       .req = 1,
       .f = hello_world,
   };
