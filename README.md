@@ -2,7 +2,8 @@
 
 Arger is a simple, cross-platform and single-header argument parser for C.
 
-<img width="743" height="885" alt="image" src="https://github.com/user-attachments/assets/6a5635b6-3dfb-4efc-b140-7b1d370c99ef" />
+<img width="596" height="820" alt="image" src="https://github.com/user-attachments/assets/2f9f7bfc-4005-4709-adea-8464fc549174" />
+<img width="696" height="334" alt="image" src="https://github.com/user-attachments/assets/10869cf6-5f42-4e46-bf4d-74af21bfa231" />
 
 ## API Reference
 
