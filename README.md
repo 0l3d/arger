@@ -2,6 +2,16 @@
 
 Arger is a simple, single-header argument parser for C.
 
+## Example:
+`examples/hello_world.c`:
+<div align="left">
+  <img src="https://github.com/user-attachments/assets/fd6f03c9-5290-4953-9e72-e8084a181ff3" width="476" height="220" alt="image" />  
+ 
+  <img width="315" height="161" alt="image" src="https://github.com/user-attachments/assets/2cfb3bd7-108c-4e8d-b667-c5e69e925908" />  
+  
+  <img width="539" height="284" alt="image" src="https://github.com/user-attachments/assets/24863c23-ab2a-45fa-8990-63ab53c7fe03" />  
+</div>
+
 ## API Reference
 
 The Arger API is designed to be simple and easy to understand using macros.
