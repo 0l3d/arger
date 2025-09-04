@@ -22,7 +22,7 @@ The Arger API is designed to be simple and easy to understand using macros.
 If you're using macros, the usage is straightforward:
 
 ```c
-  PARSER(argc, argv, "Example CLI for arger");
+  PARSER("Example CLI for arger");
 
   ARG(count_arg){
       .name = "count",
@@ -56,8 +56,9 @@ Macro-based function definition:
 
 ```c
 arger_func(hello_world) {
+  char *text = (char *)out;
   for (int i = 0; i < count; i++) {
-    printf("%s\n", out);
+    printf("%s\n", text);
   }
 }
 ```

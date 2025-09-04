@@ -15,7 +15,7 @@ struct Arger_Arg {
   void (*f)(void *);
 };
 
-#define PARSER(x, z, y) struct Arger_Parser parser = arger_parser(x, z, y)
+#define PARSER(y) struct Arger_Parser parser = arger_parser(argc, argv, y)
 #define ARG(x) struct Arger_Arg x =
 #define ARGS(...) struct Arger_Arg *args[] = {__VA_ARGS__}
 #define CHECK check_args(parser, args, sizeof(args) / sizeof(args[0]))
