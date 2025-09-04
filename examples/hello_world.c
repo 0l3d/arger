@@ -17,7 +17,7 @@ arger_func(hello_world) {
 }
 
 int main(int argc, char *argv[]) {
-  PARSER("Example CLI for arger");
+  PARSER("Example CLI for arger", "v0.1.0\ninformation of version...");
 
   ARG(count_arg){
       .name = "count",

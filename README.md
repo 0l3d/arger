@@ -22,7 +22,7 @@ The Arger API is designed to be simple and easy to understand using macros.
 If you're using macros, the usage is straightforward:
 
 ```c
-  PARSER("Example CLI for arger");
+  PARSER("Example CLI for arger", "v0.1.0");
 
   ARG(count_arg){
       .name = "count",
@@ -71,7 +71,7 @@ arger_func(hello_world) {
 If you're not using macros, setup becomes slightly more verbose:
 
 ```c
-  struct Arger_Parser parser = arger_parser(argc, argv, "Arger example code");
+  struct Arger_Parser parser = arger_parser(argc, argv, "Arger example code", "v0.1.0");
 
   struct Arger_Arg count_arg = {
       .name = "count",

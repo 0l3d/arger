@@ -15,11 +15,11 @@ struct Arger_Arg {
   void (*f)(void *);
 };
 
-#define PARSER(y) struct Arger_Parser parser = arger_parser(argc, argv, y)
+#define PARSER(y, z) struct Arger_Parser parser = arger_parser(argc, argv, y, z)
 #define ARG(x) struct Arger_Arg x =
 #define ARGS(...) struct Arger_Arg *args[] = {__VA_ARGS__}
 #define CHECK check_args(parser, args, sizeof(args) / sizeof(args[0]))
 #define arger_func(x) void x(void *out)
 
-struct Arger_Parser arger_parser(int argc, char **argv, char *desc);
+struct Arger_Parser arger_parser(int argc, char **argv, char *desc, char *ver);
 void check_args(struct Arger_Parser parser, struct Arger_Arg **arger, int size);

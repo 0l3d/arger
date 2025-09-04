@@ -4,7 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Arger_Parser arger_parser(int argc, char **argv, char *desc) {
+char *version_info = NULL;
+
+struct Arger_Parser arger_parser(int argc, char **argv, char *desc, char *ver) {
+  version_info = ver;
   struct Arger_Parser ret = {
       .desc = desc,
       .argc = argc,
@@ -41,25 +44,26 @@ void check_args(struct Arger_Parser parser, struct Arger_Arg **arger,
     return;
   }
 
-  struct Arger_Args **args = malloc(sizeof(struct Arger_Args *) * size);
-  int help_msg = 0;
-  for (int i = 0; i < size; i++) {
-    args[i] = malloc(sizeof(struct Arger_Args));
+  struct Arger_Args **args = malloc(sizeof(struct Arger_Args *) * (size + 2));
+  int args_i = 0;
 
+  for (int i = 0; i < size; i++, args_i++) {
+    args[args_i] = malloc(sizeof(struct Arger_Args));
     if (arger[i]->long_n == 1) {
-      args[i]->longer = malloc(strlen(arger[i]->name) + 3);
-      snprintf(args[i]->longer, strlen(arger[i]->name) + 3, "--%s",
+      args[args_i]->longer = malloc(strlen(arger[i]->name) + 3);
+      snprintf(args[args_i]->longer, strlen(arger[i]->name) + 3, "--%s",
                arger[i]->name);
     } else {
-      args[i]->longer = NULL;
+      args[args_i]->longer = NULL;
     }
 
     if (arger[i]->short_n == 1) {
-      args[i]->shorter = malloc(4);
-      snprintf(args[i]->shorter, 4, "-%c", arger[i]->name[0]);
+      args[args_i]->shorter = malloc(4);
+      snprintf(args[args_i]->shorter, 4, "-%c", arger[i]->name[0]);
     } else {
-      args[i]->shorter = NULL;
+      args[args_i]->shorter = NULL;
     }
+    args[args_i]->called = 0;
   }
 
   for (int i = 0; i < parser.argc; i++) {
@@ -77,20 +81,34 @@ void check_args(struct Arger_Parser parser, struct Arger_Arg **arger,
       printf("Usage: %s [OPTIONS] ...\n\n", parser.argv[0]);
 
       printf("OPTIONS:\n");
-      for (int i = 0; i < size; i++) {
+
+      for (int j = 0; j < size; j++) {
         char opt[256] = "";
-        if (arger[i]->short_n == 1) {
-          strcat(opt, args[i]->shorter);
-          if (arger[i]->long_n == 1)
+        if (arger[j]->short_n == 1) {
+          strcat(opt, args[j]->shorter);
+          if (arger[j]->long_n == 1)
             strcat(opt, ", ");
         }
-        if (arger[i]->long_n == 1) {
-          strcat(opt, args[i]->longer);
+        if (arger[j]->long_n == 1) {
+          strcat(opt, args[j]->longer);
         }
 
-        printf(" %-25s %-*s %s\n", opt, max_len, arger[i]->desc,
-               type_str(arger[i]->type));
+        printf(" %-25s %-*s %s\n", opt, max_len, arger[j]->desc,
+               type_str(arger[j]->type));
       }
+      printf("\nEXTRA:\n");
+
+      printf(" %-25s %-*s\n", "-h, --help", max_len, "Print this help message");
+      if (version_info != NULL)
+        printf(" %-25s %-*s \n", "-v, --version", max_len,
+               "Show version information");
+
+      exit(0);
+    }
+
+    if (strcmp(parser.argv[i], "--version") == 0 ||
+        strcmp(parser.argv[i], "-v") == 0) {
+      printf("%s - %s\n", parser.argv[0], version_info);
       exit(0);
     }
 
