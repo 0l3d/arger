@@ -43,7 +43,7 @@ If you're using macros, the usage is straightforward:
       .f = hello_world,
   };
 
-  ARGS(&count_arg, &text_arg, &parse_arg);
+  ARGS(&count_arg, &text_arg);
   CHECK;
 ```
 
