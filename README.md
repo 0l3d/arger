@@ -1,16 +1,6 @@
 # ARGER
 
-Arger is a simple, single-header argument parser for C.
-
-## Example:
-`examples/hello_world.c`:
-<div align="left">
-  <img src="https://github.com/user-attachments/assets/fd6f03c9-5290-4953-9e72-e8084a181ff3" width="476" height="220" alt="image" />  
- 
-  <img width="315" height="161" alt="image" src="https://github.com/user-attachments/assets/2cfb3bd7-108c-4e8d-b667-c5e69e925908" />  
-  
-  <img width="539" height="284" alt="image" src="https://github.com/user-attachments/assets/24863c23-ab2a-45fa-8990-63ab53c7fe03" />  
-</div>
+Arger is a simple, cross-platform and single-header argument parser for C.
 
 ## API Reference
 
@@ -46,14 +36,6 @@ If you're using macros, the usage is straightforward:
       .long_n = 1,
       .short_n = 1,
       .f = hello_world,
-  };
-
-  ARG(parse_arg){
-      .name = "parse",
-      .desc = "Parse in one line.",
-      .long_n = 1,
-      .short_n = 1,
-      .f = parser_test,
   };
 
   ARGS(&count_arg, &text_arg, &parse_arg);
@@ -98,6 +80,7 @@ If you're not using macros, setup becomes slightly more verbose:
       .desc = "Select a text.",
       .long_n = 1,
       .short_n = 1,
+      .req = 1,
       .f = hello_world,
   };
 
